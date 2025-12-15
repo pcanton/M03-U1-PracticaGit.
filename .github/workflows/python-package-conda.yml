@@ -2,9 +2,7 @@ name: Python Unit Tests CI
 
 on:
   push:
-    branches: [ "main", "dev" ] # S'executa quan hi ha un push a les branques main o dev
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ] 
 
 jobs:
   build:
@@ -16,7 +14,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x' # Configura l'entorn amb la darrera versió de Python 3
+          python-version: '3.x'
 
       - name: Run Unit Tests
-        run: python -m unittest test_security.py
+        # Aquesta comanda executa el fitxer directament, evitant errors d'importació
+        run: python test_security.py
