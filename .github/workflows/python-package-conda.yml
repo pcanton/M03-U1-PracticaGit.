@@ -1,0 +1,22 @@
+name: Python Unit Tests CI
+
+on:
+  push:
+    branches: [ "main", "dev" ] # S'executa quan hi ha un push a les branques main o dev
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x' # Configura l'entorn amb la darrera versió de Python 3
+
+      - name: Run Unit Tests
+        run: python -m unittest test_security.py
